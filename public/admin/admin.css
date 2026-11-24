@@ -1,14 +1,14 @@
 /* ==========================================================================
-   لوحة تحكم مخبز ريف المعادي - Admin Dashboard Stylesheet
+   لوحة تحكم مخبز ريف المعادي - RIFÉ Admin Dashboard Stylesheet
    Modern, Clean, RTL-First with Bakery Brand Aesthetics
    ========================================================================== */
 
 :root {
-    --primary: #c05621;
-    --primary-dark: #7c2d12;
-    --primary-light: #fffaf0;
-    --accent: #d69e2e;
-    --accent-gold: #f6ad55;
+    --primary: #203B32;
+    --primary-dark: #172C25;
+    --primary-light: #F5EBDD;
+    --accent: #D99A70;
+    --accent-gold: #D99A70;
 
     --success: #16a34a;
     --success-light: #f0fdf4;
@@ -19,27 +19,27 @@
     --info: #0284c7;
     --info-light: #f0f9ff;
 
-    --bg-page: #f8f5f1;
+    --bg-page: #F5EBDD;
     --bg-card: #ffffff;
-    --bg-sidebar: #271a14;
+    --bg-sidebar: #302923;
     --bg-topbar: #ffffff;
-    --bg-subtle: #f1e7dc;
+    --bg-subtle: #EAE2D5;
 
-    --text-heading: #24160f;
-    --text-body: #4a3b32;
-    --text-muted: #8c7b70;
+    --text-heading: #302923;
+    --text-body: #51483F;
+    --text-muted: #80766B;
     --text-light: #ffffff;
 
-    --border: #e8ded4;
-    --border-subtle: #f3eae1;
+    --border: #DDD3C5;
+    --border-subtle: #EAE2D5;
     --radius-sm: 8px;
     --radius-md: 12px;
     --radius-lg: 18px;
     --radius-full: 9999px;
 
-    --shadow-sm: 0 1px 3px rgba(39, 26, 20, 0.05);
-    --shadow-md: 0 4px 14px rgba(39, 26, 20, 0.07);
-    --shadow-lg: 0 12px 28px rgba(39, 26, 20, 0.12);
+    --shadow-sm: 0 1px 3px rgba(48, 41, 35, 0.05);
+    --shadow-md: 0 4px 14px rgba(48, 41, 35, 0.07);
+    --shadow-lg: 0 12px 28px rgba(48, 41, 35, 0.12);
 
     --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -179,7 +179,7 @@ img {
     align-items: center;
     justify-content: center;
     padding: 1.5rem;
-    background: radial-gradient(circle at 50% 30%, #fbf5ee 0%, #ebe0d3 100%);
+    background: radial-gradient(circle at 50% 30%, #F5EBDD 0%, #EAE2D5 100%);
 }
 
 .auth-card {
@@ -208,10 +208,12 @@ img {
     align-items: center;
     justify-content: center;
     margin: 0 auto 1rem;
-    box-shadow: 0 4px 14px rgba(192, 86, 33, 0.3);
+    box-shadow: 0 4px 14px rgba(32, 59, 50, 0.3);
 }
 
 .auth-header h2 {
+    font-family: 'Playfair Display', 'Cairo', serif;
+    letter-spacing: 0.035em;
     font-size: 1.6rem;
     font-weight: 900;
     color: var(--text-heading);
@@ -260,7 +262,7 @@ img {
 
 .input-with-icon input:focus {
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(192, 86, 33, 0.15);
+    box-shadow: 0 0 0 3px rgba(32, 59, 50, 0.15);
 }
 
 .auth-footer {
@@ -289,7 +291,7 @@ img {
 .dashboard-sidebar {
     width: 270px;
     background: var(--bg-sidebar);
-    color: #eedfd2;
+    color: #EAE2D5;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -328,7 +330,7 @@ img {
 
 .brand-info span {
     font-size: 0.75rem;
-    color: #a49183;
+    color: #B8AA99;
 }
 
 .sidebar-nav {
@@ -345,7 +347,7 @@ img {
     gap: 0.85rem;
     padding: 0.85rem 1rem;
     border-radius: var(--radius-md);
-    color: #d1c0b3;
+    color: #D8CBB9;
     font-size: 0.95rem;
     font-weight: 700;
     transition: var(--transition);
@@ -367,7 +369,7 @@ img {
 .nav-item.active {
     background: var(--primary);
     color: #ffffff;
-    box-shadow: 0 4px 12px rgba(192, 86, 33, 0.35);
+    box-shadow: 0 4px 12px rgba(32, 59, 50, 0.35);
 }
 
 .sidebar-footer {
@@ -508,7 +510,7 @@ img {
     flex-shrink: 0;
 }
 
-.icon-products { background: #fff4ed; color: var(--primary); }
+.icon-products { background: #EAF0E8; color: var(--primary); }
 .icon-available { background: var(--success-light); color: var(--success); }
 .icon-out { background: var(--danger-light); color: var(--danger); }
 .icon-categories { background: var(--warning-light); color: var(--warning); }
@@ -657,7 +659,7 @@ img {
 }
 
 .data-table th {
-    background: #fdfaf6;
+    background: #F5EBDD;
     color: var(--text-heading);
     font-weight: 800;
     padding: 0.9rem 1.2rem;
@@ -672,7 +674,7 @@ img {
 }
 
 .data-table tr:hover {
-    background-color: #fdfbfa;
+    background-color: #FFFCF7;
 }
 
 .table-img {
@@ -698,7 +700,7 @@ img {
 .badge-success { background: var(--success-light); color: var(--success); }
 .badge-danger { background: var(--danger-light); color: var(--danger); }
 .badge-warning { background: var(--warning-light); color: var(--warning); }
-.badge-primary { background: #fff0e6; color: var(--primary); }
+.badge-primary { background: #EAF0E8; color: var(--primary); }
 .badge-gray { background: #f3f4f6; color: #6b7280; }
 
 .price-box {
@@ -770,7 +772,7 @@ img {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(36, 22, 15, 0.6);
+    background: rgba(48, 41, 35, 0.6);
     backdrop-filter: blur(4px);
     z-index: 1000;
     display: flex;
@@ -837,7 +839,7 @@ img {
     display: flex;
     justify-content: flex-end;
     gap: 0.75rem;
-    background: #faf7f2;
+    background: #F5EBDD;
 }
 
 /* Form Styles Inside Modals */
@@ -880,7 +882,7 @@ img {
 .form-group select:focus,
 .form-group textarea:focus {
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(192, 86, 33, 0.12);
+    box-shadow: 0 0 0 3px rgba(32, 59, 50, 0.12);
 }
 
 .image-source-tabs {
@@ -907,7 +909,7 @@ img {
     padding: 0.5rem;
     border: 1px dashed var(--border);
     border-radius: var(--radius-md);
-    background: #faf8f5;
+    background: #F5EBDD;
 }
 
 .image-preview-wrapper img {
@@ -928,7 +930,7 @@ img {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.75rem;
-    background: #faf8f5;
+    background: #F5EBDD;
     padding: 1rem;
     border-radius: var(--radius-md);
     border: 1px solid var(--border-subtle);

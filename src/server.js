@@ -55,7 +55,7 @@ app.get('/api/health', (req, res) => {
     res.status(200).json({
         success: true,
         status: 'online',
-        bakery: 'مخبز ريف المعادي - Maadi Artisan Bakery',
+        bakery: 'RIFÉ Artisan Bakehouse — Maadi, Cairo',
         timestamp: new Date().toISOString()
     });
 });
@@ -90,7 +90,7 @@ const startServer = async () => {
         return new Promise((resolve) => {
             const server = app.listen(PORT, () => {
                 console.log('====================================================');
-                console.log(`🍞 مخبز ريف المعادي - خادم الويب ولوحة الإدارة جاهز للعمل`);
+                console.log(`🍞 RIFÉ Artisan Bakehouse - Web server and admin dashboard are ready`);
                 console.log(`🌐 الموقع العام:   http://localhost:${PORT}`);
                 console.log(`🛠️ لوحة الإدارة: http://localhost:${PORT}/admin`);
                 console.log(`📡 نقطة الـ API:   http://localhost:${PORT}/api/products`);
