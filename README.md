@@ -1,6 +1,6 @@
-# 🍞 مخبز ريف المعادي - Full-Stack Bakery Website & Admin Dashboard
+# RIFÉ — Artisan Bakehouse | Full-Stack Bakery Website & Admin Dashboard
 
-نظام متكامل لموقع مخبز "ريف المعادي" (المعادي، القاهرة، مصر) يشمل واجهة الزبائن العامة، ولوحة تحكم إدارية احترافية لمالك المخبز، مع خادم خلفي مبني باستخدام **Node.js** و **Express.js** وقاعدة بيانات **MongoDB**.
+نظام متكامل لموقع RIFÉ — مخبز حِرفي (المعادي، القاهرة، مصر) يشمل واجهة الزبائن العامة، ولوحة تحكم إدارية احترافية لمالك المخبز، مع خادم خلفي مبني باستخدام **Node.js** و **Express.js** وقاعدة بيانات **MongoDB**.
 
 ---
 
@@ -57,6 +57,20 @@ reef-maadi-bakery/
 ├── .env                       # متغيرات البيئة السرية
 └── .env.example               # نموذج توضيحي لمتغيرات البيئة
 ```
+
+---
+
+## 🎨 هوية RIFÉ البصرية (Brand Identity)
+
+- **Brand name:** RIFÉ — Artisan Bakehouse.
+- **Forest:** `#203B32` — primary brand color.
+- **Deep Forest:** `#172C25` — hover and deep surfaces.
+- **Sage:** `#A7B69A` — soft supporting accent.
+- **Cream:** `#F5EBDD` — warm page background.
+- **Apricot:** `#D99A70` — highlight accent.
+- **Espresso:** `#302923` — dark surfaces and headings.
+
+The same palette is applied to the public website and the RTL admin dashboard.
 
 ---
 
@@ -142,7 +156,7 @@ npm run dev
 
 ### 2. إضافة خصم أو عرض خاص (Discounts & Deals)
 * افتح تعديل المنتج وضع "سعر الخصم".
-* سيظهر في الموقع العام السعر القديم مشطوباً والسعر الجديد باللون البرتقالي المميز مع شارة "عرض خاص".
+* سيظهر في الموقع العام السعر القديم مشطوباً والسعر الجديد بلون المشمش المميز مع شارة "عرض خاص".
 
 ### 3. إدارة التوفر (Out of Stock Control)
 * إذا نفد أحد المخبوزات خلال اليوم، اضغط على زر الحالة الأخضر **"متوفر"** في جدول المنتجات ليتحول فوراً إلى **"نفد"** باللون الأحمر.
