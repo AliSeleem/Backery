@@ -1,0 +1,36 @@
+{
+  "name": "reef-maadi-bakery",
+  "version": "1.0.0",
+  "description": "Full-Stack Bakery Website & Admin Dashboard for Reef El-Maadi Bakery, Cairo",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node src/server.js",
+    "seed": "node src/utils/seedData.js",
+    "test": "node src/test_suite.js"
+  },
+  "keywords": [
+    "bakery",
+    "maadi",
+    "cairo",
+    "express",
+    "mongodb",
+    "admin-dashboard",
+    "ecommerce"
+  ],
+  "author": "Reef Maadi Bakery Team",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.5",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1"
+  },
+  "devDependencies": {
+    "mongodb-memory-server": "^10.1.3"
+  }
+}

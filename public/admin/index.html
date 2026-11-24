@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم | مخبز ريف المعادي</title>
+
+    <!-- Google Fonts: Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Admin CSS -->
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+    <!-- =======================================================
+         VIEW 1: LOGIN SCREEN (Displayed when not authenticated)
+         ======================================================= -->
+    <div id="loginView" class="auth-wrapper">
+        <div class="auth-card">
+            <div class="auth-header">
+                <div class="auth-logo">
+                    <i class="fa-solid fa-wheat-awn"></i>
+                </div>
+                <h2>ريف المعادي</h2>
+                <p>لوحة إدارة المخبز والتحكم بالمنتجات</p>
+            </div>
+
+            <div id="loginAlert" class="alert alert-danger" style="display: none;"></div>
+
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label for="loginEmail">البريد الإلكتروني للإدارة</label>
+                    <div class="input-with-icon">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" id="loginEmail" required placeholder="admin@reefmaadi.com" autocomplete="email">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="loginPassword">كلمة المرور</label>
+                    <div class="input-with-icon">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="loginPassword" required placeholder="••••••••" autocomplete="current-password">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block" id="loginSubmitBtn">
+                    <i class="fa-solid fa-arrow-right-to-bracket"></i> تسجيل الدخول للوحة التحكم
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <a href="/" target="_blank"><i class="fa-solid fa-globe"></i> العودة للموقع العام</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- =======================================================
+         VIEW 2: MAIN DASHBOARD (Displayed when authenticated)
+         ======================================================= -->
+    <div id="dashboardView" class="dashboard-wrapper" style="display: none;">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="dashboard-sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon"><i class="fa-solid fa-wheat-awn"></i></div>
+                <div class="brand-info">
+                    <h3>ريف المعادي</h3>
+                    <span>لوحة الإدارة</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <button class="nav-item active" data-tab="overview">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>نظرة عامة والتحليلات</span>
+                </button>
+                <button class="nav-item" data-tab="products">
+                    <i class="fa-solid fa-bread-slice"></i>
+                    <span>إدارة المنتجات والأسعار</span>
+                </button>
+                <button class="nav-item" data-tab="categories">
+                    <i class="fa-solid fa-tags"></i>
+                    <span>أقسام المخبوزات</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="/" target="_blank" class="btn btn-outline-light btn-block">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> عرض الموقع العام
+                </a>
+                <button class="btn btn-danger-outline btn-block mt-2" id="logoutBtn">
+                    <i class="fa-solid fa-right-from-bracket"></i> تسجيل الخروج
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <div class="dashboard-main">
+            <!-- Topbar Header -->
+            <header class="dashboard-topbar">
+                <div class="topbar-right">
+                    <button class="sidebar-toggle-btn" id="sidebarToggle" aria-label="تبديل القائمة">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <h2 class="page-title" id="pageTitle">نظرة عامة والتحليلات</h2>
+                </div>
+
+                <div class="topbar-left">
+                    <div class="admin-profile">
+                        <div class="admin-avatar"><i class="fa-solid fa-user-shield"></i></div>
+                        <div class="admin-meta">
+                            <strong id="adminName">المدير العام</strong>
+                            <small id="adminEmail">admin@reefmaadi.com</small>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-content">
+                
+                <!-- TAB 1: OVERVIEW & STATS -->
+                <section id="tab-overview" class="tab-panel active">
+                    <!-- Metrics Cards -->
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-icon icon-products">
+                                <i class="fa-solid fa-basket-shopping"></i>
+                            </div>
+                            <div class="metric-data">
+                                <span class="metric-label">إجمالي المنتجات</span>
+                                <h3 class="metric-value" id="statTotalProducts">--</h3>
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <div class="metric-icon icon-available">
+                                <i class="fa-solid fa-circle-check"></i>
+                            </div>
+                            <div class="metric-data">
+                                <span class="metric-label">منتجات متوفرة للطلب</span>
+                                <h3 class="metric-value" id="statAvailableProducts">--</h3>
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <div class="metric-icon icon-out">
+                                <i class="fa-solid fa-circle-xmark"></i>
+                            </div>
+                            <div class="metric-data">
+                                <span class="metric-label">منتجات نفدت من المخزون</span>
+                                <h3 class="metric-value" id="statOutOfStock">--</h3>
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <div class="metric-icon icon-categories">
+                                <i class="fa-solid fa-layer-group"></i>
+                            </div>
+                            <div class="metric-data">
+                                <span class="metric-label">أقسام المخبوزات</span>
+                                <h3 class="metric-value" id="statTotalCategories">--</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions & Recent Updates -->
+                    <div class="overview-grid mt-4">
+                        <div class="card recent-activity-card">
+                            <div class="card-header flex-between">
+                                <h3><i class="fa-solid fa-clock-rotate-left"></i> آخر التحديثات على المنتجات</h3>
+                                <button class="btn btn-sm btn-outline" id="viewAllProductsBtn">عرض الكل</button>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="data-table">
+                                        <thead>
+                                            <tr>
+                                                <th>المنتج</th>
+                                                <th>القسم</th>
+                                                <th>السعر الحالي</th>
+                                                <th>الحالة</th>
+                                                <th>الإجراء</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="recentProductsTableBody">
+                                            <tr>
+                                                <td colspan="5" class="text-center py-4">جاري تحميل البيانات...</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card quick-help-card">
+                            <div class="card-header">
+                                <h3><i class="fa-solid fa-lightbulb"></i> إرشادات سريعة لمالك المخبز</h3>
+                            </div>
+                            <div class="card-body">
+                                <ul class="help-list">
+                                    <li>
+                                        <i class="fa-solid fa-circle-check text-success"></i>
+                                        <div>
+                                            <strong>تغيير الأسعار فورياً:</strong>
+                                            <p>يمكنك تغيير سعر أي منتج بضغطة زر وسيظهر السعر الجديد على الموقع فوراً في ثوانٍ.</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <i class="fa-solid fa-tags text-primary"></i>
+                                        <div>
+                                            <strong>الخصومات والعروض:</strong>
+                                            <p>عند تحديد "سعر الخصم"، سيظهر السعر القديم مشطوباً والجديد واضحاً للزبائن.</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <i class="fa-solid fa-boxes-stacked text-warning"></i>
+                                        <div>
+                                            <strong>إذا نفد صنف اليوم:</strong>
+                                            <p>اضغط على زر التوفر لتحويله إلى "نفد مؤقتاً" دون الحاجة لحذفه.</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <button class="btn btn-primary btn-block mt-3" id="quickAddProductBtn">
+                                    <i class="fa-solid fa-plus"></i> إضافة منتج جديد الآن
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 2: PRODUCTS MANAGEMENT -->
+                <section id="tab-products" class="tab-panel">
+                    <div class="card">
+                        <div class="card-header filter-bar">
+                            <div class="search-input-wrapper">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <input type="text" id="productSearchInput" placeholder="بحث بالاسم أو الوصف...">
+                            </div>
+
+                            <div class="filter-controls">
+                                <select id="productCategoryFilter" class="form-select">
+                                    <option value="all">جميع الأقسام</option>
+                                </select>
+
+                                <select id="productStatusFilter" class="form-select">
+                                    <option value="all">كل الحالات</option>
+                                    <option value="available">متوفر للطلب</option>
+                                    <option value="out">نفد من المخزون</option>
+                                    <option value="inactive">مخفي من الموقع</option>
+                                </select>
+
+                                <button class="btn btn-primary" id="openAddProductModalBtn">
+                                    <i class="fa-solid fa-circle-plus"></i> إضافة منتج جديد
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>الصورة</th>
+                                            <th>اسم الصنف</th>
+                                            <th>القسم</th>
+                                            <th>السعر (ج.م)</th>
+                                            <th>سعر الخصم</th>
+                                            <th>التوفر</th>
+                                            <th>الظهور بالموقع</th>
+                                            <th>إجراءات سريعة</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="productsTableBody">
+                                        <tr>
+                                            <td colspan="8" class="text-center py-5">جاري جلب المنتجات من قاعدة البيانات...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 3: CATEGORIES MANAGEMENT -->
+                <section id="tab-categories" class="tab-panel">
+                    <div class="card">
+                        <div class="card-header flex-between">
+                            <div>
+                                <h3>أقسام المخبوزات الحالية</h3>
+                                <p class="text-muted text-sm">يمكنك إضافة وتعديل وتصنيف الأقسام التي تظهر في شريط التنقل بالموقع.</p>
+                            </div>
+                            <button class="btn btn-primary" id="openAddCategoryModalBtn">
+                                <i class="fa-solid fa-plus"></i> إضافة قسم جديد
+                            </button>
+                        </div>
+
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>الأيقونة</th>
+                                            <th>اسم القسم</th>
+                                            <th>المعرف اللاتيني (Slug)</th>
+                                            <th>الوصف</th>
+                                            <th>عدد المنتجات</th>
+                                            <th>الترتيب</th>
+                                            <th>إجراءات</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="categoriesTableBody">
+                                        <tr>
+                                            <td colspan="7" class="text-center py-5">جاري جلب الأقسام...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- =======================================================
+         MODAL 1: ADD / EDIT PRODUCT
+         ======================================================= -->
+    <div id="productModal" class="modal-overlay" style="display: none;">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="productModalTitle">إضافة منتج جديد للمخبز</h3>
+                <button class="modal-close" data-modal="productModal">&times;</button>
+            </div>
+            
+            <form id="productForm">
+                <input type="hidden" id="productId">
+
+                <div class="modal-body">
+                    <div class="form-grid">
+                        
+                        <div class="form-group full-width">
+                            <label for="prodName">اسم الصنف بالكامل *</label>
+                            <input type="text" id="prodName" required placeholder="مثال: كرواسون لوز فرنسي">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prodCategory">القسم التابع له *</label>
+                            <select id="prodCategory" required>
+                                <option value="">اختر القسم...</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prodTag">شارة أو شريط مميز (اختياري)</label>
+                            <input type="text" id="prodTag" placeholder="مثال: الأكثر مبيعاً، طازج، حِرفي">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prodPrice">السعر الأساسي (ج.م) *</label>
+                            <input type="number" id="prodPrice" required step="0.5" min="0" placeholder="مثال: 50">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prodDiscountPrice">سعر الخصم / العرض (ج.م) (اختياري)</label>
+                            <input type="number" id="prodDiscountPrice" step="0.5" min="0" placeholder="اتركه فارغاً إذا لا يوجد خصم">
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="prodDesc">وصف المنتج ومكوناته *</label>
+                            <textarea id="prodDesc" rows="3" required placeholder="اكتب وصفاً جذاباً يوضح المكونات وطريقة التخمير أو النكهة..."></textarea>
+                        </div>
+
+                        <!-- Image Upload or URL -->
+                        <div class="form-group full-width">
+                            <label>صورة المنتج *</label>
+                            <div class="image-source-tabs">
+                                <button type="button" class="btn btn-sm active" id="tabUploadImg">رفع من الجهاز</button>
+                                <button type="button" class="btn btn-sm" id="tabUrlImg">رابط صورة خارجي</button>
+                            </div>
+
+                            <div id="uploadImgBox" class="mt-2">
+                                <input type="file" id="prodImageFile" accept="image/*" class="file-input">
+                                <small class="text-muted d-block mt-1">يدعم صور JPG, PNG, WEBP حتى 5 ميجابايت.</small>
+                            </div>
+
+                            <div id="urlImgBox" class="mt-2" style="display: none;">
+                                <input type="url" id="prodImageUrl" placeholder="https://images.unsplash.com/...">
+                            </div>
+
+                            <div class="image-preview-wrapper mt-2">
+                                <img id="prodImagePreview" src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" alt="معاينة الصورة">
+                                <span class="preview-label">معاينة الصورة</span>
+                            </div>
+                        </div>
+
+                        <!-- Status Toggles -->
+                        <div class="form-group full-width toggles-wrapper">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="prodIsAvailable" checked>
+                                <span><strong>متوفر للطلب</strong> (إذا ألغيت التحديد سيظهر للعميل "نفد مؤقتاً")</span>
+                            </label>
+
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="prodIsActive" checked>
+                                <span><strong>معروض بالموقع</strong> (إذا ألغيت التحديد سيتم إخفاء الصنف تماماً من الموقع)</span>
+                            </label>
+
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="prodIsFeatured">
+                                <span><strong>منتج مميز</strong></span>
+                            </label>
+
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="prodIsBestSeller">
+                                <span><strong>الأكثر طلباً (Best Seller)</strong></span>
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" data-modal="productModal">إلغاء</button>
+                    <button type="submit" class="btn btn-primary" id="saveProductBtn">
+                        <i class="fa-solid fa-floppy-disk"></i> حفظ المنتج
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- =======================================================
+         MODAL 2: QUICK PRICE UPDATE
+         ======================================================= -->
+    <div id="quickPriceModal" class="modal-overlay" style="display: none;">
+        <div class="modal-card modal-sm">
+            <div class="modal-header">
+                <h3>تحديث سعر المنتج سريعاً</h3>
+                <button class="modal-close" data-modal="quickPriceModal">&times;</button>
+            </div>
+            <form id="quickPriceForm">
+                <input type="hidden" id="quickPriceProdId">
+                <div class="modal-body">
+                    <p class="mb-3">تعديل سعر: <strong id="quickPriceProdName" class="text-primary">--</strong></p>
+
+                    <div class="form-group">
+                        <label for="quickPriceInput">السعر الأساسي الجديد (ج.م) *</label>
+                        <input type="number" id="quickPriceInput" required step="0.5" min="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quickDiscountInput">سعر الخصم / العرض (ج.م) (اختياري)</label>
+                        <input type="number" id="quickDiscountInput" step="0.5" min="0" placeholder="اتركه فارغاً لإلغاء الخصم">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" data-modal="quickPriceModal">إلغاء</button>
+                    <button type="submit" class="btn btn-primary" id="saveQuickPriceBtn">حفظ السعر الجديد</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- =======================================================
+         MODAL 3: ADD / EDIT CATEGORY
+         ======================================================= -->
+    <div id="categoryModal" class="modal-overlay" style="display: none;">
+        <div class="modal-card modal-sm">
+            <div class="modal-header">
+                <h3 id="categoryModalTitle">إضافة قسم جديد</h3>
+                <button class="modal-close" data-modal="categoryModal">&times;</button>
+            </div>
+            <form id="categoryForm">
+                <input type="hidden" id="categoryId">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="catName">اسم القسم بالعربي *</label>
+                        <input type="text" id="catName" required placeholder="مثال: مخبوزات إيطالية">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="catSlug">المعرف اللاتيني (Slug) *</label>
+                        <input type="text" id="catSlug" required placeholder="مثال: italian-bread">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="catIcon">أيقونة FontAwesome</label>
+                        <input type="text" id="catIcon" value="fa-solid fa-bread-slice" placeholder="fa-solid fa-bread-slice">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="catDesc">وصف مختصر</label>
+                        <textarea id="catDesc" rows="2" placeholder="نبذة عن المخبوزات الموجودة بالقسم..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="catSortOrder">ترتيب الظهور</label>
+                        <input type="number" id="catSortOrder" value="0">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" data-modal="categoryModal">إلغاء</button>
+                    <button type="submit" class="btn btn-primary" id="saveCategoryBtn">حفظ القسم</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- =======================================================
+         MODAL 4: DELETE CONFIRMATION
+         ======================================================= -->
+    <div id="deleteModal" class="modal-overlay" style="display: none;">
+        <div class="modal-card modal-sm">
+            <div class="modal-header bg-danger-light">
+                <h3 class="text-danger"><i class="fa-solid fa-triangle-exclamation"></i> تأكيد الحذف</h3>
+                <button class="modal-close" data-modal="deleteModal">&times;</button>
+            </div>
+            <div class="modal-body py-4">
+                <p id="deleteModalMessage">هل أنت متأكد من رغبتك في حذف هذا العنصر؟ لن يمكنك التراجع عن هذا الإجراء.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" data-modal="deleteModal">تراجع</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteBtn">تأكيد الحذف نهائياً</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin JS Script -->
+    <script src="admin.js"></script>
+</body>
+</html>
