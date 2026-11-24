@@ -1,16 +1,16 @@
 /* ==========================================================================
-   مخبز ريف المعادي - Maadi Artisan Bakery Stylesheet
+   مخبز ريف المعادي - RIFÉ Artisan Bakehouse Stylesheet
    Modern, Warm, Responsive & RTL-First Design
    ========================================================================== */
 
 :root {
     /* Color Palette - Warm Bakery Tones */
-    --primary: #c05621;
-    --primary-dark: #7c2d12;
-    --primary-light: #fffaf0;
-    --primary-subtle: #fbd38d;
-    --accent: #d69e2e;
-    --accent-gold: #f6ad55;
+    --primary: #203B32;
+    --primary-dark: #172C25;
+    --primary-light: #F5EBDD;
+    --primary-subtle: #A7B69A;
+    --accent: #D99A70;
+    --accent-gold: #D99A70;
 
     /* WhatsApp Green */
     --whatsapp: #25d366;
@@ -19,28 +19,28 @@
     --whatsapp-shadow: rgba(37, 211, 102, 0.35);
 
     /* Backgrounds */
-    --bg-main: #fbf8f5;
+    --bg-main: #F5EBDD;
     --bg-surface: #ffffff;
     --bg-card: #ffffff;
-    --bg-alt: #f4ece2;
-    --bg-dark: #271a14;
+    --bg-alt: #EAE2D5;
+    --bg-dark: #302923;
 
     /* Text */
-    --text-heading: #2d1810;
-    --text-body: #574136;
-    --text-muted: #856e62;
-    --text-light: #fffaf0;
+    --text-heading: #302923;
+    --text-body: #51483F;
+    --text-muted: #80766B;
+    --text-light: #F5EBDD;
 
     /* Borders & Shadows */
-    --border-color: #ebdcd0;
-    --border-subtle: #f3e9df;
+    --border-color: #DDD3C5;
+    --border-subtle: #EAE2D5;
     --radius-sm: 8px;
     --radius-md: 14px;
     --radius-lg: 22px;
     --radius-full: 9999px;
-    --shadow-sm: 0 2px 6px rgba(45, 24, 16, 0.05);
-    --shadow-md: 0 8px 20px rgba(45, 24, 16, 0.08);
-    --shadow-lg: 0 16px 36px rgba(45, 24, 16, 0.12);
+    --shadow-sm: 0 2px 6px rgba(48, 41, 35, 0.05);
+    --shadow-md: 0 8px 20px rgba(48, 41, 35, 0.08);
+    --shadow-lg: 0 16px 36px rgba(48, 41, 35, 0.12);
 
     /* Transitions */
     --transition-fast: 0.2s ease;
@@ -148,13 +148,13 @@ img {
 .btn-primary {
     background: var(--primary);
     color: #ffffff;
-    box-shadow: 0 4px 14px rgba(192, 86, 33, 0.35);
+    box-shadow: 0 4px 14px rgba(32, 59, 50, 0.35);
 }
 
 .btn-primary:hover {
     background: var(--primary-dark);
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(192, 86, 33, 0.45);
+    box-shadow: 0 6px 18px rgba(32, 59, 50, 0.45);
 }
 
 .btn-whatsapp {
@@ -309,7 +309,7 @@ img {
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(251, 248, 245, 0.95);
+    background: rgba(245, 235, 221, 0.95);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     z-index: 1000;
@@ -340,7 +340,7 @@ img {
     align-items: center;
     justify-content: center;
     font-size: 1.3rem;
-    box-shadow: 0 4px 10px rgba(192, 86, 33, 0.25);
+    box-shadow: 0 4px 10px rgba(32, 59, 50, 0.25);
 }
 
 .logo-text {
@@ -349,6 +349,8 @@ img {
 }
 
 .logo-title {
+    font-family: 'Playfair Display', 'Cairo', serif;
+    letter-spacing: 0.035em;
     font-size: 1.35rem;
     font-weight: 900;
     color: var(--text-heading);
@@ -408,7 +410,7 @@ img {
 .hero {
     position: relative;
     padding: 5rem 0 4rem;
-    background: linear-gradient(180deg, #f7efe6 0%, var(--bg-main) 100%);
+    background: linear-gradient(180deg, #EAE2D5 0%, var(--bg-main) 100%);
     overflow: hidden;
 }
 
@@ -419,7 +421,7 @@ img {
     left: -10%;
     width: 450px;
     height: 450px;
-    background: radial-gradient(circle, rgba(246, 173, 85, 0.2) 0%, rgba(251, 248, 245, 0) 70%);
+    background: radial-gradient(circle, rgba(167, 182, 154, 0.2) 0%, rgba(245, 235, 221, 0) 70%);
     border-radius: 50%;
     pointer-events: none;
 }
@@ -452,6 +454,8 @@ img {
 }
 
 .hero-title {
+    font-family: 'Playfair Display', 'Cairo', serif;
+    letter-spacing: 0.045em;
     font-size: 3.2rem;
     font-weight: 900;
     color: var(--text-heading);
@@ -652,7 +656,7 @@ img {
     background: var(--primary);
     color: #ffffff;
     border-color: var(--primary);
-    box-shadow: 0 4px 12px rgba(192, 86, 33, 0.3);
+    box-shadow: 0 4px 12px rgba(32, 59, 50, 0.3);
 }
 
 .products-grid {
@@ -682,7 +686,7 @@ img {
     position: relative;
     height: 220px;
     overflow: hidden;
-    background: #eedfd2;
+    background: #EAE2D5;
 }
 
 .product-img {
@@ -765,7 +769,7 @@ img {
 /* Menu CTA Banner */
 .menu-cta-banner {
     margin-top: 3.5rem;
-    background: linear-gradient(135deg, var(--bg-dark), #3f2619);
+    background: linear-gradient(135deg, var(--bg-dark), #172C25);
     color: #ffffff;
     border-radius: var(--radius-lg);
     padding: 2.5rem 3rem;
@@ -785,7 +789,7 @@ img {
 
 .banner-text p {
     font-size: 1rem;
-    color: #eedfd2;
+    color: #EAE2D5;
     max-width: 600px;
 }
 
@@ -931,7 +935,7 @@ img {
    ========================================================================== */
 .site-footer {
     background: var(--bg-dark);
-    color: #eedfd2;
+    color: #EAE2D5;
     padding: 4rem 0 1.5rem;
 }
 
@@ -943,6 +947,8 @@ img {
 }
 
 .footer-logo {
+    font-family: 'Playfair Display', 'Cairo', serif;
+    letter-spacing: 0.035em;
     display: flex;
     align-items: center;
     gap: 0.75rem;
@@ -956,7 +962,7 @@ img {
     font-size: 0.95rem;
     line-height: 1.7;
     max-width: 380px;
-    color: #cfbeaf;
+    color: #D8CBB9;
 }
 
 .footer-links h4, .footer-social h4 {
@@ -974,7 +980,7 @@ img {
 }
 
 .footer-links a {
-    color: #cfbeaf;
+    color: #D8CBB9;
     font-size: 0.92rem;
 }
 
@@ -1012,7 +1018,7 @@ img {
     padding-top: 1.5rem;
     text-align: center;
     font-size: 0.88rem;
-    color: #a49183;
+    color: #B8AA99;
 }
 
 /* ==========================================================================
